@@ -2,7 +2,7 @@ var express = require('express'),
     path = require('path'),
     bodyparser = require('body-parser'),
     cors = require('cors'),
-    mongoose = require('mangoose');
+    mongoose = require('mongoose');
     config = require('./config/DB');
     coinRoutes = require('./expressRoutes/coinRoutes');
 
