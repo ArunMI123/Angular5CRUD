@@ -13,11 +13,13 @@ var express = require('express'),
         );
 
     const app = express();
+
     app.use(bodyparser.json());
     app.use(cors());
-    app.use('/coins', coinRoutes);
-    var port = process.env.PORT || 4000;
+    const port = process.env.PORT || 4000;
 
-    var server = app.listen(function(){
+    app.use('/coins', coinRoutes);
+
+    var server = app.listen(port, function(){
         console.log(' Listening on port ' + port);
     });

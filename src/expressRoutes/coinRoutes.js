@@ -41,7 +41,7 @@ coinRoutes.route('/edit/:id').get(function (req, res) {
 
 //Defined update route
 coinRoutes.route('/update/:id').post(function (req, res) {
-    Coin.findById(req.param.id, function(req, res) {
+    Coin.findById(req.params.id, function(err, coin) {
         if(!coin)
         return next(new Error('Could not load Document'));
         else {
@@ -49,7 +49,7 @@ coinRoutes.route('/update/:id').post(function (req, res) {
             coin.price = req.body.price;
 
             coin.save().then(coin => {
-                res.json('Update completed');
+                res.json('Update complete');
             })
             .catch(err => {
                 res.status(400).send("unable to update the database");
@@ -60,7 +60,7 @@ coinRoutes.route('/update/:id').post(function (req, res) {
 
 //Define delete | remove | destory route
 coinRoutes.route('/delete/:id').get(function (req, res) {
-    Coin.findByIdAndRemove({_id: req.param.id}, function(err, coin) {
+    Coin.findByIdAndRemove({_id: req.params.id}, function(err, coin) {
         if(err) res.json(err);
         else res.json('Successfully removed');
     });
